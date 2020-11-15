@@ -8,10 +8,6 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 
-#if PY_MAJOR_VERSION == 2
-#define Py_MIN(x, y)  (((x) > (y)) ? (y) : (x))
-#endif
-
 
 static void
 split(off_t *I, off_t *V, off_t start, off_t len, off_t h)
@@ -536,7 +532,6 @@ static PyMethodDef module_functions[] = {
 };
 
 /* initialization routine for the shared libary */
-#if PY_MAJOR_VERSION == 3
 static PyModuleDef moduledef = {
     PyModuleDef_HEAD_INIT, "core", 0, -1, module_functions,
 };
@@ -557,4 +552,3 @@ initcore(void)
 {
     Py_InitModule("core", module_functions);
 }
-#endif
